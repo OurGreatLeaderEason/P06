@@ -93,24 +93,5 @@ public class Path {
         return returnVal;
     }
 
-    public static void main(String[] args){
-        Path path=new Path();
-        path.addTail(new Intersection(0, 0));
-        path.addTail(new Intersection(1, 0));
-        path.addTail(new Intersection(2, 0));
-        path.addTail(new Intersection(3, 0));
-        Path clone=new Path();
-      /* 
-        for(int i=0; i<path.length(); i++){
-            int x=Integer.valueOf(path.toString().substring(1+7*i, 2+7*i));
-            int y=Integer.valueOf(path.toString().substring(3+7*i, 4+7*i));
-            clone.addTail(new Intersection(x, y));
-        }
-        */
-        
-        
-        System.out.println(path);
-        //System.out.println(clone);
-        
-    }
+   
 }

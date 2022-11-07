@@ -33,7 +33,12 @@ public class PathUtils {
         return countPaths(start, end.goSouth())+countPaths(start, end.goWest());
     }
 
-
+    /**
+     * Recursive method that generates the Arraylist of all possible paths
+     * @param start start coordinate
+     * @param paths ArrayList of paths
+     * @return
+     */
     private ArrayList<Path> pathFinder(Intersection start, ArrayList<Path> paths){
         System.out.println(paths);
         PathUtils tool=new PathUtils();
@@ -48,8 +53,6 @@ public class PathUtils {
             return paths;
         }
         //pain
-       
-        
             int loop=paths.size();
             for(int i=0; i<loop; i++){
                 if(!paths.get(i).getHead().equals(start)){
@@ -79,23 +82,26 @@ public class PathUtils {
     }
    
 
-    public static void main(String[] args){
-        
-        System.out.println(findAllPaths(new Intersection(0, 1), new Intersection(3, 2)));
-        
-      
-    }
+   
 
    
     
-
+    /**
+     * Private helper method that adds a southward intersection to the front of the Path
+     * @param path the path that we want to modify
+     * @return modified path
+     */
    private Path pathBuilderSouth(Path path){
     
         path.addHead(path.getHead().goSouth());
         return path;
-    
    }
 
+   /**
+    * Private helper method that adds a westward intersection to the front of the Path
+    * @param path the path that we want to modify
+    * @return modified path
+    */
    private Path pathBuilderWest(Path path){
     
     path.addHead(path.getHead().goWest());
@@ -106,7 +112,11 @@ public class PathUtils {
   
 
    
-
+    /**
+     * private helper method that creates a deep copy of a path
+     * @param path the path that we want to clone
+     * @return cloned path
+     */
     private Path clonePath(Path path){
         Path clone=new Path();
         for(int i=0; i<path.length(); i++){
@@ -117,7 +127,22 @@ public class PathUtils {
         return clone;
     }
 
+    /**
+     * Finds all valid Paths between the given start and end Intersections. If it is not possible to get from the start to the end intersection by moving up or right, then an empty ArrayList should be returned.
+For example, if start is Intersection(0, 0) and end is Intersection(2, 1), this method should return an ArrayList consisting of the following Paths:
+(0,0)->(1,0)->(2,0)->(2,1)
+(0,0)->(1,0)->(1,1)->(2,1)
+(0,0)->(0,1)->(1,1)->(2,1)
+If start is Intersection(1, 0) and end is Intersection(0, 0), this method should return an empty ArrayList.
+MUST be implemented recursively. If you wish, you can use a call to a private static helper method which is recursive.
+     * @param start Intersection to start at
+     * @param end Intersection to end at
+     * @return an ArrayList containing all valid Paths which start and end at the given Intersections
+     */
     public static ArrayList<Path> findAllPaths(Intersection start, Intersection end){
+        if(countPaths(start, end)==0){
+            return new ArrayList<Path>();
+        }
         PathUtils tool=new PathUtils();
         ArrayList<Path> paths=new ArrayList<Path>();
         Path last=new Path(); 
@@ -127,4 +152,5 @@ public class PathUtils {
         
     }
 
+    
 }
